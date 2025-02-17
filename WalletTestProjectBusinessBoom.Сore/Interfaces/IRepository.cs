@@ -5,16 +5,17 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WalletTestProjectBusinessBoom.Core.Interfaces
+namespace WalletTestProjectBusinessBoom.Сore.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {
         Task AddAsync(TEntity entity);
-        TEntity GetByIdAsync(int id);   
         IQueryable<TEntity> GetAll();
-        void Update(TEntity entity);
-        void DeleteById(int id);
+        Task<TEntity?> GetByIdAsync(Guid id);
+        IQueryable<TEntity> GetRange(Expression<Func<TEntity, bool>> predicate);
+        Task RemoveByIdAsync(Guid id);
         void RemoveRange(IEnumerable<TEntity> entities);
-        IQueryable<TEntity> GetRange(Expression<Func<TEntity, bool>> expression);
+        void Update(TEntity entity);
+        Task<int> SaveChangesAsync();
     }
 }

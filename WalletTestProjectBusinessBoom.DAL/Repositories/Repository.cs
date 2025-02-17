@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using WalletTestProjectBusinessBoom.Core.Interfaces;
+using WalletTestProjectBusinessBoom.Сore.Interfaces;
 
 namespace WalletTestProjectBusinessBoom.DAL.Repositories
 {

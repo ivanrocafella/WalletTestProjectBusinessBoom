@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WalletTestProjectBusinessBoom.Core.Interfaces;
+using WalletTestProjectBusinessBoom.Сore.Interfaces;
 
-namespace WalletTestProjectBusinessBoom.Core.Entities
+namespace WalletTestProjectBusinessBoom.Сore.Entities
 {
     public class User : IDateFixEntity
     {
-        public required string Id { get; set; }
+        public required Guid Id { get; set; }
         public string? Email { get; set; }
         public decimal Balance { get; set; }
-        public DateTime DateStart { get; set ; }
+        public DateTime DateStart { get; set; }
         public DateTime DateUpdate { get; set; }
     }
 }
