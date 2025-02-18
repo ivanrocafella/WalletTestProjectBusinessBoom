@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using WalletTestProjectBusinessBoom.API.Extensions;
 using WalletTestProjectBusinessBoom.BAL.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +12,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplication(builder.Configuration);
+// Disables automatic ModelState validation in ASP.NET Core
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
+// Remove "Controller" from the end and convert to lowercase
+builder.Services.AddControllers(options =>
+{
+    options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+});
 
 var app = builder.Build();
 

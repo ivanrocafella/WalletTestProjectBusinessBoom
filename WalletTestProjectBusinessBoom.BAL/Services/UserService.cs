@@ -14,7 +14,7 @@ namespace WalletTestProjectBusinessBoom.BAL.Services
 {
     public class UserService(IUserRepository userRepository) : IUserService
     {
-        public async Task<ResponseUserDTO?> CreateUser(CreateUserDTO createUserDTO)
+        public async Task<ResponseUserDTO?> CreateUserAsync(CreateUserDTO createUserDTO)
         {
             User user = new()
             { 
@@ -25,14 +25,36 @@ namespace WalletTestProjectBusinessBoom.BAL.Services
             await userRepository.SaveChangesAsync();
             User? userFromDb = await userRepository.GetByIdAsync(user.Id);
             if (userFromDb != null)
+                return MakeResponseUserDTO(userFromDb);
+            else
             {
-                ResponseUserDTO responseUserDTO = new()
-                { 
-                    UserId = userFromDb.Id,
-                    Email = userFromDb.Email,
-                    Balance = userFromDb.Balance
-                };
-                return responseUserDTO;
+                Console.WriteLine("User not found");
+                return null;
+            }
+
+            
+        }
+
+        public async Task<ResponseUserBalanceDTO?> GetBalanceAsync(Guid guid)
+        {
+            User? userFromDb = await userRepository.GetByIdAsync(guid);
+            if (userFromDb != null)
+                return MakeResponseUserBalanceDTO(userFromDb);
+            else
+            {
+                Console.WriteLine("User not found");
+                return null;
+            }
+        }
+
+        public async Task<ResponseUserNewBalanceDTO?> MakeDepositAsync(Guid guid, AmountDepositDTO amountDepositDTO)
+        {
+            User? userFromDb = await userRepository.GetByIdAsync(guid);
+            if (userFromDb != null)
+            {
+                ResponseUserNewBalanceDTO responseUserNewBalanceDTO = MakeResponseUserNewBalanceDTO(userFromDb);
+                responseUserNewBalanceDTO.NewBalance += amountDepositDTO.Amount;
+                return responseUserNewBalanceDTO;            
             }
             else
             {
@@ -40,5 +62,36 @@ namespace WalletTestProjectBusinessBoom.BAL.Services
                 return null;
             }
         }
-    }
+
+        public static ResponseUserDTO MakeResponseUserDTO(User user)
+        {
+            ResponseUserDTO responseUserDTO = new()
+            {
+                UserId = user.Id,
+                Email = user.Email,
+                Balance = user.Balance
+            };
+            return responseUserDTO;
+        }
+
+        public static ResponseUserBalanceDTO MakeResponseUserBalanceDTO(User user)
+        {
+            ResponseUserBalanceDTO responseUserBalanceDTO = new()
+            {
+                UserId = user.Id,
+                Balance = user.Balance
+            };
+            return responseUserBalanceDTO;
+        }
+
+        public static ResponseUserNewBalanceDTO MakeResponseUserNewBalanceDTO(User user)
+        {
+            ResponseUserNewBalanceDTO responseUserNewBalanceDTO = new()
+            {
+                UserId = user.Id,
+                NewBalance = user.Balance
+            };
+            return responseUserNewBalanceDTO;
+        }
+    } 
 }

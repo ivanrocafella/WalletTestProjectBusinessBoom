@@ -4,12 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WalletTestProjectBusinessBoom.BAL.Validators;
 
 namespace WalletTestProjectBusinessBoom.BAL.DTOs.User
 {
-    public class CreateUserDTO
+    public class AmountDepositDTO
     {
-        [EmailAddress]
-        public string? Email { get; set; }
+        [NonNegativeDecimal(ErrorMessage = "Amount must be a non-negative number.")]
+        public decimal Amount { get; set; } 
     }
 }

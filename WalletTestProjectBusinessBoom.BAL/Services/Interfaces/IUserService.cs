@@ -9,6 +9,8 @@ namespace WalletTestProjectBusinessBoom.BAL.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<ResponseUserDTO?> CreateUser(CreateUserDTO createUserDTO);
+        Task<ResponseUserDTO?> CreateUserAsync(CreateUserDTO createUserDTO);
+        Task<ResponseUserBalanceDTO?> GetBalanceAsync(Guid guid);
+        Task<ResponseUserNewBalanceDTO?> MakeDepositAsync(Guid guid, AmountDepositDTO amountDepositDTO);
     }
 }

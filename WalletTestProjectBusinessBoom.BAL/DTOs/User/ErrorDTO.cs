@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WalletTestProjectBusinessBoom.BAL.DTOs.User
 {
-    public class CreateUserDTO
+    public class ErrorDTO(string? error)
     {
-        [EmailAddress]
-        public string? Email { get; set; }
+        public string? Error { get; set; } = error;
     }
 }
