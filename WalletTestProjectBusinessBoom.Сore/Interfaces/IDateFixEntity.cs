@@ -8,7 +8,7 @@ namespace WalletTestProjectBusinessBoom.Сore.Interfaces
 {
     public interface IDateFixEntity
     {
-        public DateTime DateStart { get; set; }
-        public DateTime DateUpdate { get; set; }
+        DateTime DateStart { get; set; }
+        DateTime DateUpdate { get; set; }
     }
 }
