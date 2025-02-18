@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WalletTestProjectBusinessBoom.DAL\WalletTestProjectBusinessBoom.DAL.csproj" />
+    <ProjectReference Include="..\WalletTestProjectBusinessBoom.Сore\WalletTestProjectBusinessBoom.Сore.csproj" />
+  </ItemGroup>
+
 </Project>

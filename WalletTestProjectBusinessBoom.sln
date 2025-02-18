@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletTestProjectBusinessBo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletTestProjectBusinessBoom.DAL", "WalletTestProjectBusinessBoom.DAL\WalletTestProjectBusinessBoom.DAL.csproj", "{BED8B54B-08F2-456B-8BF8-FEBF6613A82A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletTestProjectBusinessBoom.BAL", "WalletTestProjectBusinessBoom.BAL\WalletTestProjectBusinessBoom.BAL.csproj", "{BB017603-A3A4-4734-949B-A6A6A5A71644}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BED8B54B-08F2-456B-8BF8-FEBF6613A82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BED8B54B-08F2-456B-8BF8-FEBF6613A82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BED8B54B-08F2-456B-8BF8-FEBF6613A82A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB017603-A3A4-4734-949B-A6A6A5A71644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB017603-A3A4-4734-949B-A6A6A5A71644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB017603-A3A4-4734-949B-A6A6A5A71644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB017603-A3A4-4734-949B-A6A6A5A71644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

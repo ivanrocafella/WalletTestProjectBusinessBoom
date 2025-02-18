@@ -1,0 +1,6 @@
+@WalletTestProjectBusinessBoom.API_HostAddress = http://localhost:5118
+
+GET {{WalletTestProjectBusinessBoom.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
