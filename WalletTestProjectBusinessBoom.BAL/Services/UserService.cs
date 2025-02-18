@@ -8,10 +8,11 @@ using WalletTestProjectBusinessBoom.BAL.DTOs.User;
 using WalletTestProjectBusinessBoom.BAL.Services.Interfaces;
 using WalletTestProjectBusinessBoom.DAL.Repositories;
 using WalletTestProjectBusinessBoom.Сore.Entities;
+using WalletTestProjectBusinessBoom.Сore.Interfaces;
 
 namespace WalletTestProjectBusinessBoom.BAL.Services
 {
-    public class UserService(UserRepository userRepository) : IUserService
+    public class UserService(IUserRepository userRepository) : IUserService
     {
         public async Task<ResponseUserDTO?> CreateUser(CreateUserDTO createUserDTO)
         {
@@ -35,7 +36,7 @@ namespace WalletTestProjectBusinessBoom.BAL.Services
             }
             else
             {
-                Console.WriteLine("Пользователь не найден");
+                Console.WriteLine("User not found");
                 return null;
             }
         }

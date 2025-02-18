@@ -19,12 +19,12 @@ namespace WalletTestProjectBusinessBoom.DAL
             {
                 entry.Entity.DateStart = entry.State switch
                 {
-                    EntityState.Added => DateTime.Now,
+                    EntityState.Added => DateTime.UtcNow,
                     _ => entry.Entity.DateStart
                 };
                 entry.Entity.DateUpdate = entry.State switch
                 {
-                    EntityState.Modified => DateTime.Now,
+                    EntityState.Modified => DateTime.UtcNow,
                     _ => entry.Entity.DateUpdate
                 };
             }

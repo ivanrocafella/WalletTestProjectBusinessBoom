@@ -9,8 +9,8 @@ using WalletTestProjectBusinessBoom.BAL.Services.Interfaces;
 using WalletTestProjectBusinessBoom.DAL;
 using WalletTestProjectBusinessBoom.DAL.Repositories;
 using WalletTestProjectBusinessBoom.Сore.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 namespace WalletTestProjectBusinessBoom.BAL.Extensions
 {
