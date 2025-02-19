@@ -25,5 +25,6 @@ To run a project using the PostgreSQL database in the Visual Studio environment,
   6. Apply Migrations:
        - In the Package Manager Console, run: Update-Database
   7. Run the Project:
+       - Select the type of project to run WalletTestProjectBusinessBoom.API
        - Press F5 or select Debug > Start Debugging to run the project in debug mode.
        - To run without debugging, press Ctrl + F5 or select Debug > Start Without Debugging.
