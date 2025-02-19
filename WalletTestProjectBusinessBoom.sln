@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletTestProjectBusinessBoom.TEST", "WalletTestProjectBusinessBoom.TEST\WalletTestProjectBusinessBoom.TEST.csproj", "{48F695C2-2E45-46EF-ABE4-A7033C9D936A}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FA12FB27-E81B-413C-8956-F315E0EB1EF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{48F695C2-2E45-46EF-ABE4-A7033C9D936A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48F695C2-2E45-46EF-ABE4-A7033C9D936A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48F695C2-2E45-46EF-ABE4-A7033C9D936A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA12FB27-E81B-413C-8956-F315E0EB1EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA12FB27-E81B-413C-8956-F315E0EB1EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA12FB27-E81B-413C-8956-F315E0EB1EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA12FB27-E81B-413C-8956-F315E0EB1EF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

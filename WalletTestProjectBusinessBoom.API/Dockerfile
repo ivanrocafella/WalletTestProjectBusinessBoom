@@ -26,8 +26,20 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./WalletTestProjectBusinessBoom.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
+# Финальный этап
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+
+# Копируем файлы миграций в финальный образ
+COPY --from=build /src/WalletTestProjectBusinessBoom.DAL/Migrations ./Migrations
+
 # Этот этап используется в рабочей среде или при запуске из VS в обычном режиме (по умолчанию, когда конфигурация отладки не используется)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "WalletTestProjectBusinessBoom.API.dll"]
+# Копируем скрипт в контейнер
+COPY entrypoint.sh .
+# Делаем скрипт исполняемым
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
