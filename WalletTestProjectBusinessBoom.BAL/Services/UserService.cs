@@ -8,12 +8,14 @@ using WalletTestProjectBusinessBoom.BAL.DTOs.User;
 using WalletTestProjectBusinessBoom.BAL.Services.Interfaces;
 using WalletTestProjectBusinessBoom.DAL.Repositories;
 using WalletTestProjectBusinessBoom.Сore.Entities;
+using WalletTestProjectBusinessBoom.Сore.Entities.Enums;
 using WalletTestProjectBusinessBoom.Сore.Interfaces;
 
 namespace WalletTestProjectBusinessBoom.BAL.Services
 {
     public class UserService(IUserRepository userRepository) : IUserService
     {
+        private const string noUserMessage = "User not found";
         public async Task<ResponseUserDTO?> CreateUserAsync(CreateUserDTO createUserDTO)
         {
             User user = new()
@@ -28,37 +30,42 @@ namespace WalletTestProjectBusinessBoom.BAL.Services
                 return MakeResponseUserDTO(userFromDb);
             else
             {
-                Console.WriteLine("User not found");
+                Console.WriteLine(noUserMessage);
                 return null;
-            }
-
-            
+            }  
         }
 
         public async Task<ResponseUserBalanceDTO?> GetBalanceAsync(Guid guid)
         {
-            User? userFromDb = await userRepository.GetByIdAsync(guid);
-            if (userFromDb != null)
-                return MakeResponseUserBalanceDTO(userFromDb);
+            User? user = await userRepository.GetByIdAsync(guid);
+            if (user != null)
+                return MakeResponseUserBalanceDTO(user);
             else
             {
-                Console.WriteLine("User not found");
+                Console.WriteLine(noUserMessage);
                 return null;
             }
         }
 
-        public async Task<ResponseUserNewBalanceDTO?> MakeDepositAsync(Guid guid, AmountDepositDTO amountDepositDTO)
+        public async Task<ResponseUserNewBalanceDTO?> MakeTransactionAsync(Guid guid, AmountDTO amountDTO, KindTransaction kindTransaction)
         {
-            User? userFromDb = await userRepository.GetByIdAsync(guid);
-            if (userFromDb != null)
+            User? user = await userRepository.GetByIdAsync(guid);
+            if (user != null)
             {
-                ResponseUserNewBalanceDTO responseUserNewBalanceDTO = MakeResponseUserNewBalanceDTO(userFromDb);
-                responseUserNewBalanceDTO.NewBalance += amountDepositDTO.Amount;
-                return responseUserNewBalanceDTO;            
+                if (kindTransaction == KindTransaction.Deposit)
+                    user.Balance += amountDTO.Amount;
+                else
+                {
+                    user.Balance -= amountDTO.Amount;
+                    if (user.Balance < 0)
+                        return MakeResponseUserNewBalanceDTO(user);
+                }
+                await userRepository.SaveChangesAsync();
+                return MakeResponseUserNewBalanceDTO(user);
             }
             else
             {
-                Console.WriteLine("User not found");
+                Console.WriteLine(noUserMessage);
                 return null;
             }
         }
@@ -93,5 +100,6 @@ namespace WalletTestProjectBusinessBoom.BAL.Services
             };
             return responseUserNewBalanceDTO;
         }
+
     } 
 }

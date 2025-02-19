@@ -14,9 +14,10 @@ namespace WalletTestProjectBusinessBoom.BAL.Validators
             if (value is decimal decimalValue)
             {
                 if (decimalValue <= 0)
-                    return new ValidationResult(ErrorMessage ?? "The value must be non-negative or greater than 0.");
+                    return new ValidationResult("The value must be non-negative or greater than 0.");
+                return ValidationResult.Success!;
             }
-            return ValidationResult.Success;
+            return new ValidationResult("Invalid input type.");
         }
     }
 }

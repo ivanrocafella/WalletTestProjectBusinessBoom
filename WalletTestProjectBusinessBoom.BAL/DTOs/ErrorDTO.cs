@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WalletTestProjectBusinessBoom.BAL.DTOs.User
+namespace WalletTestProjectBusinessBoom.BAL.DTOs
 {
     public class ErrorDTO(string? error)
     {

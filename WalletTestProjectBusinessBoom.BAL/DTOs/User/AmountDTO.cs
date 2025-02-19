@@ -8,7 +8,7 @@ using WalletTestProjectBusinessBoom.BAL.Validators;
 
 namespace WalletTestProjectBusinessBoom.BAL.DTOs.User
 {
-    public class AmountDepositDTO
+    public class AmountDTO
     {
         [NonNegativeDecimal(ErrorMessage = "Amount must be a non-negative number.")]
         public decimal Amount { get; set; } 

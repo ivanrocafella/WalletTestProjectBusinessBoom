@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WalletTestProjectBusinessBoom.BAL.DTOs.User;
+using WalletTestProjectBusinessBoom.Сore.Entities.Enums;
 
 namespace WalletTestProjectBusinessBoom.BAL.Services.Interfaces
 {
@@ -11,6 +12,6 @@ namespace WalletTestProjectBusinessBoom.BAL.Services.Interfaces
     {
         Task<ResponseUserDTO?> CreateUserAsync(CreateUserDTO createUserDTO);
         Task<ResponseUserBalanceDTO?> GetBalanceAsync(Guid guid);
-        Task<ResponseUserNewBalanceDTO?> MakeDepositAsync(Guid guid, AmountDepositDTO amountDepositDTO);
+        Task<ResponseUserNewBalanceDTO?> MakeTransactionAsync(Guid guid, AmountDTO amountDTO, KindTransaction kindTransaction);
     }
 }
