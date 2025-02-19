@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.OpenApi.Models;
 using WalletTestProjectBusinessBoom.API.Extensions;
 using WalletTestProjectBusinessBoom.BAL.Extensions;
 
@@ -10,7 +11,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "User Management API",
+        Version = "v1.0",
+        Description = "An API for managing users, their balance, and transactions.",
+        Contact = new OpenApiContact
+        {
+            Name = "Ivan Kobtsev",
+            Email = "vanomc77@gmail.com",
+            Url = new Uri("https://www.linkedin.com/in/ivanrocafellla/")
+        }
+    });
+}
+);
 builder.Services.AddApplication(builder.Configuration);
 // Disables automatic ModelState validation in ASP.NET Core
 builder.Services.Configure<ApiBehaviorOptions>(options =>

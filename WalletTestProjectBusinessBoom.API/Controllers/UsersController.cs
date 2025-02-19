@@ -17,6 +17,11 @@ namespace WalletTestProjectBusinessBoom.API.Controllers
         private const string noCreatedUserMessage = "The user hasn't been created";
         private readonly string noFunds = "Insufficient funds";
 
+        /// <summary>
+        /// Create new user
+        /// </summary>
+        /// <param name="createUserDTO">A DTO containing the data for creating a new user.</param>
+        /// <returns>Returns an Actionresult containing either the data of the created user, or an error message if creation failed.</returns>
         // POST: /api/users
         [HttpPost]
         public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserDTO createUserDTO)
@@ -43,6 +48,11 @@ namespace WalletTestProjectBusinessBoom.API.Controllers
                 
         }
 
+        /// <summary>
+        /// Retrieves the user's balance by their ID.
+        /// </summary>
+        /// <param name="userId">The unique identifier of the user (GUID) whose balance needs to be received.</param>
+        /// <returns>Returns an Actionresult containing the user's balance if the request is successful, or an error message if the user is not found.</returns>
         // GET: /api/users/{userId}/balance
         [HttpGet(routeGetBalanceAsync)]
         public async Task<IActionResult> GetBalanceAsync(Guid userId)
@@ -60,6 +70,13 @@ namespace WalletTestProjectBusinessBoom.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Performs the operation of depositing funds to the user's account.
+        /// </summary>
+        /// <param name="userId">The unique identifier of the user for whom the deposit is being made.</param>
+        /// <param name="amountDTO">A DTO containing the amount of the deposit.</param>
+        /// <returns>Returns <see cref="OkObjectResult"/> with the user's new balance if the operation is successful,
+        /// or <see cref="StatusCodeResult"/> with the 500 code and an error message if a validation error has occurred or the user has not been found.</returns>
         // POST: /api/users/{userId}/deposit
         [HttpPost(routeMakeDeposit)]
         public async Task<IActionResult> MakeDeposit(Guid userId, [FromBody] AmountDTO amountDTO)
@@ -85,6 +102,13 @@ namespace WalletTestProjectBusinessBoom.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Performs a withdrawal operation from the user's account.
+        /// </summary>
+        /// <param name="userId">The unique identifier of the user that the withdrawal is being made from.</param>
+        /// <param name="amountDTO">A DTO containing the withdrawal amount.</param>
+        /// <returns>Returns <see cref="OkObjectResult"/> with the user's new balance if the operation is successful, 
+        /// <see cref="StatusCodeResult"/> with the 500 code and an error message if the user does not have enough funds, if the user is not found, or if the request model is invalid.</returns>
         // POST: /api/users/{userId}/withdraw
         [HttpPost(routeMakeWithdraw)]
         public async Task<IActionResult> MakeWithdraw(Guid userId, [FromBody] AmountDTO amountDTO)
